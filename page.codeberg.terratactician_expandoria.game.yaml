@@ -29,6 +29,9 @@ finish-args:
   # Allow access to pictures folder,
   # required for screenshots
   - "--filesystem=xdg-pictures"
+  # Allow access to downloads folder,
+  # required for to save recordings (.json)
+  - "--filesystem=xdg-download"
 cleanup:
   - "/include"
   - "/lib/pkgconfig"
@@ -60,5 +63,5 @@ modules:
     sources:
       - type: "git"
         url: "https://codeberg.org/terratactician-expandoria/game"
-        tag: "v0.2.2"
+        tag: "v0.2.3"
       - "cargo-sources.json"
