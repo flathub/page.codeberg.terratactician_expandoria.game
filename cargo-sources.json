@@ -2358,14 +2358,14 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/fastrand/fastrand-2.1.1.crate",
-        "sha256": "e8c02a5121d4ea3eb16a80748c74f5549a5665e4c21333c6098f283870fbdea6",
-        "dest": "cargo/vendor/fastrand-2.1.1"
+        "url": "https://static.crates.io/crates/fastrand/fastrand-2.2.0.crate",
+        "sha256": "486f806e73c5707928240ddc295403b1b93c96a02038563881c4a2fd84b81ac4",
+        "dest": "cargo/vendor/fastrand-2.2.0"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"e8c02a5121d4ea3eb16a80748c74f5549a5665e4c21333c6098f283870fbdea6\", \"files\": {}}",
-        "dest": "cargo/vendor/fastrand-2.1.1",
+        "contents": "{\"package\": \"486f806e73c5707928240ddc295403b1b93c96a02038563881c4a2fd84b81ac4\", \"files\": {}}",
+        "dest": "cargo/vendor/fastrand-2.2.0",
         "dest-filename": ".cargo-checksum.json"
     },
     {
