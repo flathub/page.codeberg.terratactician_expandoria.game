@@ -63,5 +63,5 @@ modules:
     sources:
       - type: "git"
         url: "https://codeberg.org/terratactician-expandoria/game"
-        tag: "v0.3.0"
+        tag: "v0.4.0"
       - "cargo-sources.json"
