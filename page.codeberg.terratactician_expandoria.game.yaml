@@ -32,15 +32,6 @@ finish-args:
   # Allow access to downloads folder,
   # required for to save recordings (.json)
   - "--filesystem=xdg-download"
-cleanup:
-  - "/include"
-  - "/lib/pkgconfig"
-  - "/man"
-  - "/share/doc"
-  - "/share/man"
-  - "/share/pkgconfig"
-  - "*.la"
-  - "*.a"
 modules:
   - name: "terratactician_expandoria"
     buildsystem: "simple"
