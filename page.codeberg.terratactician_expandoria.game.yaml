@@ -1,67 +1,58 @@
----
-app-id: "page.codeberg.terratactician_expandoria.game"
-runtime: "org.freedesktop.Platform"
-runtime-version: "24.08"
-sdk: "org.freedesktop.Sdk"
+app-id: page.codeberg.terratactician_expandoria.game
+runtime: org.freedesktop.Platform
+runtime-version: 25.08
+sdk: org.freedesktop.Sdk
 sdk-extensions:
-  - "org.freedesktop.Sdk.Extension.rust-stable"
-command: "terratactician-expandoria"
+  - org.freedesktop.Sdk.Extension.rust-stable
+command: terratactician-expandoria
 build-options:
   env:
-    CARGO_HOME: "/run/build/terratactician_expandoria/cargo"
-    TTE_BUILD_ASSETS_DIR: "/app/share/terratactician_expandoria/assets"
-  append-path: "/usr/lib/sdk/rust-stable/bin"
-rename-desktop-file: "terratactician-expandoria.desktop"
-rename-appdata-file: "page.codeberg.terratactician_expandoria.metainfo.xml"
+    CARGO_HOME: /run/build/terratactician_expandoria/cargo
+    TTE_BUILD_ASSETS_DIR: /app/share/terratactician_expandoria/assets
+  append-path: /usr/lib/sdk/rust-stable/bin
+rename-desktop-file: terratactician-expandoria.desktop
+rename-appdata-file: page.codeberg.terratactician_expandoria.metainfo.xml
 finish-args:
   # X11 + XShm access
-  - "--share=ipc"
-  - "--socket=fallback-x11"
+  - --share=ipc
+  - --socket=fallback-x11
   # Wayland access
-  - "--socket=wayland"
+  - --socket=wayland
   # Sound output
-  - "--socket=pulseaudio"
+  - --socket=pulseaudio
   # simply request all input devices for now
-  - "--device=all"
+  - --device=all
   # Allow network access,
   # required for bot API
-  - "--share=network"
+  - --share=network
   # Allow access to pictures folder,
   # required for screenshots
-  - "--filesystem=xdg-pictures"
+  - --filesystem=xdg-pictures
   # Allow access to downloads folder,
   # required for to save recordings (.json)
-  - "--filesystem=xdg-download"
-cleanup:
-  - "/include"
-  - "/lib/pkgconfig"
-  - "/man"
-  - "/share/doc"
-  - "/share/man"
-  - "/share/pkgconfig"
-  - "*.la"
-  - "*.a"
+  - --filesystem=xdg-download
 modules:
-  - name: "terratactician_expandoria"
-    buildsystem: "simple"
+  - name: terratactician_expandoria
+    buildsystem: simple
     build-commands:
       # build the cargo project
-      - "cargo --offline fetch --manifest-path Cargo.toml --verbose"
-      - "cargo --offline build --release --verbose -F custom-assets-path"
+      - cargo --offline fetch --manifest-path Cargo.toml --verbose
+      - cargo --offline build --release --verbose -F custom-assets-path
       # install binary
-      - "install -Dm755 ./target/release/terratactician-expandoria -t /app/bin/"
+      - install -Dm755 ./target/release/terratactician-expandoria -t /app/bin/
       # install metainfo file
-      - "install -Dm755 ./dist/page.codeberg.terratactician_expandoria.metainfo.xml /app/share/metainfo/page.codeberg.terratactician_expandoria.metainfo.xml"
+      - install -Dm755 ./dist/page.codeberg.terratactician_expandoria.metainfo.xml -t /app/share/metainfo/
       # install icon
-      - "install -Dm755 ./assets/icons/app-icon.png /app/share/icons/hicolor/512x512/apps/page.codeberg.terratactician_expandoria.game.png"
+      - install -Dm755 ./assets/icons/app-icon.png /app/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
       # install desktop file
-      - "install -Dm755 ./dist/terratactician-expandoria.desktop /app/share/applications/terratactician-expandoria.desktop"
-      - "desktop-file-edit --set-icon=page.codeberg.terratactician_expandoria.game /app/share/applications/terratactician-expandoria.desktop"
+      - install -Dm755 ./dist/terratactician-expandoria.desktop -t /app/share/applications/
+      - desktop-file-edit --set-icon=${FLATPAK_ID} /app/share/applications/terratactician-expandoria.desktop
       # install assets
-      - "mkdir -p /app/share/terratactician_expandoria"
-      - "cp assets -r /app/share/terratactician_expandoria/"
+      - mkdir -p /app/share/terratactician_expandoria
+      - cp assets -r /app/share/terratactician_expandoria/
     sources:
-      - type: "git"
-        url: "https://codeberg.org/terratactician-expandoria/game"
-        tag: "v0.4.2"
-      - "cargo-sources.json"
+      - type: git
+        url: https://codeberg.org/terratactician-expandoria/game
+        tag: v0.4.2
+        commit: a8057058ab1909b9440abe184e1e42f0b3974a8c
+      - cargo-sources.json
